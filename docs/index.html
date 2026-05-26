@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyberpunk 2077 Terminal Theme Preview</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #050510;
+    color: #e0e0e0;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+  h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, #00e8ff, #ff00aa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .subtitle {
+    text-align: center;
+    color: #888;
+    margin-bottom: 50px;
+    font-size: 1.1rem;
+  }
+  .themes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 30px;
+  }
+  .theme-card {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #1a1a2e;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .theme-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+  .theme-header {
+    padding: 15px 20px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .terminal {
+    padding: 20px;
+    font-size: 13px;
+    line-height: 1.6;
+    min-height: 300px;
+  }
+  .prompt { margin-bottom: 2px; }
+  .cmd { margin-bottom: 12px; opacity: 0.8; }
+  .output { margin-bottom: 12px; }
+
+  /* Night City Theme */
+  .night-city .theme-header {
+    background: linear-gradient(90deg, #000814, #001830);
+    color: #00e8ff;
+    border-bottom: 2px solid #00e8ff;
+    text-shadow: 0 0 10px rgba(0,232,255,0.5);
+  }
+  .night-city .terminal {
+    background: #000814;
+    color: #80d4ff;
+  }
+  .night-city .user { color: #ff006e; font-weight: bold; }
+  .night-city .host { color: #00e8ff; }
+  .night-city .path { color: #ffdd00; font-weight: bold; }
+  .night-city .arrow { color: #00ffaa; }
+  .night-city .git-branch { color: #00e8ff; }
+  .night-city .git-dirty { color: #ff1a5c; }
+  .night-city .highlight { color: #00ffaa; }
+  .night-city .comment { color: #4a6a7a; }
+  .night-city .keyword { color: #ff006e; font-weight: bold; }
+  .night-city .string { color: #ffdd00; }
+  .night-city .number { color: #00e8ff; }
+
+  /* Magenta Heat Theme */
+  .magenta-heat .theme-header {
+    background: linear-gradient(90deg, #000814, #1a0014);
+    color: #ff00aa;
+    border-bottom: 2px solid #ff00aa;
+    text-shadow: 0 0 10px rgba(255,0,170,0.5);
+  }
+  .magenta-heat .terminal {
+    background: #000814;
+    color: #ff88cc;
+  }
+  .magenta-heat .user { color: #ff00aa; font-weight: bold; }
+  .magenta-heat .host { color: #00e8ff; }
+  .magenta-heat .path { color: #ffdd00; font-weight: bold; }
+  .magenta-heat .arrow { color: #00ffcc; }
+  .magenta-heat .git-branch { color: #00e8ff; }
+  .magenta-heat .git-dirty { color: #ff0055; }
+  .magenta-heat .highlight { color: #00ffcc; }
+  .magenta-heat .comment { color: #6a4a6a; }
+  .magenta-heat .keyword { color: #ff00aa; font-weight: bold; }
+  .magenta-heat .string { color: #ffee00; }
+  .magenta-heat .number { color: #00e8ff; }
+
+  .glow-text {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  @keyframes glow {
+    from { text-shadow: 0 0 5px currentColor; }
+    to { text-shadow: 0 0 15px currentColor, 0 0 25px currentColor; }
+  }
+
+  .palette {
+    display: flex;
+    gap: 8px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+  }
+  .color-swatch {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.1);
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .color-swatch:hover {
+    transform: scale(1.2);
+    z-index: 10;
+  }
+  .color-swatch::after {
+    content: attr(data-color);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a1a2e;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+  .color-swatch:hover::after {
+    opacity: 1;
+  }
+
+  .footer {
+    text-align: center;
+    margin-top: 60px;
+    padding: 30px;
+    border-top: 1px solid #1a1a2e;
+    color: #555;
+  }
+  .footer a {
+    color: #00e8ff;
+    text-decoration: none;
+  }
+  .footer a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 600px) {
+    .themes { grid-template-columns: 1fr; }
+    h1 { font-size: 1.8rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>🌃 Cyberpunk 2077 Terminal Theme</h1>
+  <p class="subtitle">Neon-soaked themes for Wave Terminal, iTerm2, Alacritty & VS Code</p>
+
+  <div class="themes">
+    <!-- Night City -->
+    <div class="theme-card night-city">
+      <div class="theme-header">
+        <span>🌊</span> Night City — Cyan Neon
+      </div>
+      <div class="terminal">
+        <div class="prompt">
+          <span class="user">pedruino</span>@<span class="host">night-city</span>
+          <span class="path"> ~/projects/wave-theme</span>
+          <span class="git-branch"> (main)</span>
+          <span class="git-dirty">*</span>
+        </div>
+        <div class="cmd"><span class="arrow">➜</span> ls -la</div>
+        <div class="output">
+          <span class="highlight">drwxr-xr-x</span>  8 pedruino staff  256 Jan 15 02:00 <span class="path">.</span><br>
+          <span class="highlight">drwxr-xr-x</span>  5 pedruino staff  160 Jan 15 01:30 <span class="path">..</span><br>
+          <span class="highlight">-rw-r--r--</span>  1 pedruino staff 2.1K Jan 15 01:45 <span class="string">README.md</span><br>
+          <span class="highlight">drwxr-xr-x</span>  3 pedruino staff   96 Jan 15 01:50 <span class="path">themes</span><br>
+          <span class="highlight">drwxr-xr-x</span>  3 pedruino staff   96 Jan 15 01:52 <span class="path">terminals</span>
+        </div>
+        <div class="cmd"><span class="arrow">➜</span> cat package.json</div>
+        <div class="output">
+          {<br>
+          &nbsp;&nbsp;<span class="keyword">"name"</span>: <span class="string">"wave-cyberpunk"</span>,<br>
+          &nbsp;&nbsp;<span class="keyword">"version"</span>: <span class="string">"1.0.0"</span>,<br>
+          &nbsp;&nbsp;<span class="keyword">"description"</span>: <span class="string">"Neon terminal theme"</span><br>
+          }
+        </div>
+        <div class="cmd"><span class="arrow">➜</span> <span class="comment"># The future is now</span></div>
+
+        <div class="palette">
+          <div class="color-swatch" style="background:#000814" data-color="#000814"></div>
+          <div class="color-swatch" style="background:#00e8ff" data-color="#00e8ff"></div>
+          <div class="color-swatch" style="background:#ff006e" data-color="#ff006e"></div>
+          <div class="color-swatch" style="background:#00ffaa" data-color="#00ffaa"></div>
+          <div class="color-swatch" style="background:#ffdd00" data-color="#ffdd00"></div>
+          <div class="color-swatch" style="background:#ff1a5c" data-color="#ff1a5c"></div>
+          <div class="color-swatch" style="background:#00c8ff" data-color="#00c8ff"></div>
+          <div class="color-swatch" style="background:#80d4ff" data-color="#80d4ff"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Magenta Heat -->
+    <div class="theme-card magenta-heat">
+      <div class="theme-header">
+        <span>🔥</span> Magenta Heat — Pink Neon
+      </div>
+      <div class="terminal">
+        <div class="prompt">
+          <span class="user">pedruino</span>@<span class="host">magenta-heat</span>
+          <span class="path"> ~/projects/wave-theme</span>
+          <span class="git-branch"> (main)</span>
+          <span class="git-dirty">✚</span>
+        </div>
+        <div class="cmd"><span class="arrow">➜</span> git status</div>
+        <div class="output">
+          On branch <span class="keyword">main</span><br>
+          Your branch is up to date with <span class="string">'origin/main'</span>.<br><br>
+          Changes not staged for commit:<br>
+          &nbsp;&nbsp;<span class="git-dirty">modified:   themes/termthemes.json</span><br>
+          &nbsp;&nbsp;<span class="git-dirty">modified:   README.md</span>
+        </div>
+        <div class="cmd"><span class="arrow">➜</span> node -e "console.log('Hello Night City')"</div>
+        <div class="output">
+          <span class="string">Hello Night City</span>
+        </div>
+        <div class="cmd"><span class="arrow">➜</span> <span class="comment">// Wake the f*** up, samurai</span></div>
+
+        <div class="palette">
+          <div class="color-swatch" style="background:#000814" data-color="#000814"></div>
+          <div class="color-swatch" style="background:#ff00aa" data-color="#ff00aa"></div>
+          <div class="color-swatch" style="background:#00e8ff" data-color="#00e8ff"></div>
+          <div class="color-swatch" style="background:#00ffcc" data-color="#00ffcc"></div>
+          <div class="color-swatch" style="background:#ffee00" data-color="#ffee00"></div>
+          <div class="color-swatch" style="background:#ff0055" data-color="#ff0055"></div>
+          <div class="color-swatch" style="background:#ff88cc" data-color="#ff88cc"></div>
+          <div class="color-swatch" style="background:#ff99cc" data-color="#ff99cc"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Made with 💜 by <a href="https://github.com/pedruino">@pedruino</a></p>
+    <p style="margin-top:10px;font-size:0.9rem;">
+      <a href="https://github.com/pedruino/wave-cyberpunk-2077">⭐ Star on GitHub</a>
+      &nbsp;|&nbsp;
+      <a href="https://github.com/pedruino/wave-cyberpunk-2077#installation">📥 Install</a>
+    </p>
+  </div>
+</div>
+</body>
+</html>

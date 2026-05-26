@@ -1,0 +1,87 @@
+# Cyberpunk 2077 Starship Prompt
+# Neon glow aesthetic for terminal
+
+format = """
+[](#0a0014)
+[󰣇 ](bg:#0a0014 fg:#ff00aa)
+$username$hostname$directory$git_branch$git_status$cmd_duration
+[](#0a0014)
+$character"""
+
+# ──── USERNAME ────
+[username]
+format = '[$user]($style)'
+style_user = 'bg:#0a0014 fg:#00e8ff'
+style_root = 'bg:#0a0014 fg:#ff1a5c'
+show_always = true
+
+# ──── HOSTNAME ────
+[hostname]
+format = '[@$hostname]($style) '
+style = 'bg:#0a0014 fg:#ff00aa'
+ssh_only = false
+
+# ──── DIRECTORY ────
+[directory]
+format = '[$path]($style) '
+truncation_length = 3
+style = 'bg:#0a0014 fg:#ffdd00'
+
+# ──── GIT BRANCH ────
+[git_branch]
+format = '[$branch]($style) '
+style = 'bg:#0a0014 fg:#00e8ff'
+
+# ──── GIT STATUS ────
+[git_status]
+format = '[$all_status$ahead_behind]($style) '
+style = 'bg:#0a0014 fg:#ff1a5c'
+
+# ──── CMD DURATION ────
+[cmd_duration]
+format = '[󱦟 $duration]($style) '
+style = 'bg:#0a0014 fg:#ffdd00'
+min_time = 500
+
+# ──── CHARACTER (prompt symbol) ────
+[character]
+success_symbol = '[➜](bold #00ffaa)'
+error_symbol = '[✗](bold #ff1a5c)'
+
+# ──── LANGUAGE MODULES ────
+[nodejs]
+format = '[󰎙 $version]($style) '
+style = 'bg:#0a0014 fg:#00ffaa'
+detect_extensions = ['js', 'mjs', 'cjs', 'ts', 'tsx', 'json']
+
+[rust]
+format = '[󱘗 $version]($style) '
+style = 'bg:#0a0014 fg:#ff8800'
+
+[python]
+format = '[󰌠 $version]($style) '
+style = 'bg:#0a0014 fg:#ffdd00'
+
+[golang]
+format = '[󰟓 $version]($style) '
+style = 'bg:#0a0014 fg:#00e8ff'
+
+[docker_context]
+format = '[󰡨 $context]($style) '
+style = 'bg:#0a0014 fg:#00e8ff'
+
+# ──── DISABLED MODULES ────
+[package]
+disabled = true
+
+[aws]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[azure]
+disabled = true
+
+[kubernetes]
+disabled = true

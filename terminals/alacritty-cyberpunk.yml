@@ -1,0 +1,31 @@
+# Cyberpunk 2077: Night City — Alacritty Theme
+# Place this in ~/.config/alacritty/alacritty.yml or import it
+
+colors:
+  primary:
+    background: '#000814'
+    foreground: '#88e0dd'
+  cursor:
+    text: '#000814'
+    cursor: '#48d1cc'
+  selection:
+    text: '#88e0dd'
+    background: '#002244'
+  normal:
+    black:   '#010814'
+    red:     '#ff1a5c'
+    green:   '#00ffaa'
+    yellow:  '#ffdd00'
+    blue:    '#00b4d8'
+    magenta: '#ff0099'
+    cyan:    '#48d1cc'
+    white:   '#a0e8e5'
+  bright:
+    black:   '#0a1a30'
+    red:     '#ff5599'
+    green:   '#66ffcc'
+    yellow:  '#ffff88'
+    blue:    '#66e0e0'
+    magenta: '#ff88cc'
+    cyan:    '#88e8e5'
+    white:   '#d0f5f0'

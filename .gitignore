@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# macOS metadata
+.DS_Store
+
+# IDE
+.vscode/
+.idea/

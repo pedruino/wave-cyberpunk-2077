@@ -1,0 +1,59 @@
+{
+  "cyberpunk-2077-night-city": {
+    "display:name": "Cyberpunk 2077: Night City",
+    "display:order": 1,
+
+    "black":  "#010814",
+    "red":    "#ff1a5c",
+    "green":  "#00ffaa",
+    "yellow": "#ffdd00",
+    "blue":   "#00c8ff",
+    "magenta":"#ff006e",
+    "cyan":   "#00e8ff",
+    "white":  "#80d4ff",
+
+    "brightBlack":  "#0a1a30",
+    "brightRed":    "#ff5599",
+    "brightGreen":  "#66ffcc",
+    "brightYellow": "#ffff88",
+    "brightBlue":   "#66e0ff",
+    "brightMagenta":"#ff66b3",
+    "brightCyan":   "#a0f0ff",
+    "brightWhite":  "#e0f4ff",
+
+    "background":  "#000814",
+    "foreground":  "#80d4ff",
+    "cursor":      "#00e8ff",
+    "cursorAccent":"#000814",
+    "selection":   "#003366"
+  },
+
+  "cyberpunk-2077-magenta-heat": {
+    "display:name": "Cyberpunk 2077: Magenta Heat",
+    "display:order": 2,
+
+    "black":  "#010814",
+    "red":    "#ff0055",
+    "green":  "#00ffcc",
+    "yellow": "#ffee00",
+    "blue":   "#ff00aa",
+    "magenta":"#ff006e",
+    "cyan":   "#00e8ff",
+    "white":  "#ff88cc",
+
+    "brightBlack":  "#1a0a20",
+    "brightRed":    "#ff88bb",
+    "brightGreen":  "#88ffdd",
+    "brightYellow": "#ffffaa",
+    "brightBlue":   "#ff99cc",
+    "brightMagenta":"#ffbbdd",
+    "brightCyan":   "#a0f0ff",
+    "brightWhite":  "#ffe0f0",
+
+    "background":  "#000814",
+    "foreground":  "#ff88cc",
+    "cursor":      "#ff00aa",
+    "cursorAccent":"#000814",
+    "selection":   "#440033"
+  }
+}
